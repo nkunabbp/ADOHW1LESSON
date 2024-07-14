@@ -1,0 +1,15 @@
+﻿CREATE TABLE [RegTable]
+(
+
+[Id] int IDENTITY(1, 1) NOT NULL,
+[Name] NVARCHAR(20) NOT NULL,
+[Surname] NVARCHAR(20) NOT NULL,
+[Age] Int NOT NULL,
+[Login] NVARCHAR(20) NOT NULL,
+[Password] NVARCHAR(20) NOT NULL
+
+CONSTRAINT PK_Id PRIMARY KEY([Id]),
+CONSTRAINT CK_Name CHECK([Name] != N''),
+CONSTRAINT CK_Surname CHECK([Surname] != N''),
+CONSTRAINT CK_Age CHECK([Age] > 16)
+)
