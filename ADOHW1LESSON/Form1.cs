@@ -1,57 +1,45 @@
+using System.Data;
 using System.Data.SqlClient;
 
 namespace ADOHW1LESSON
 {
     public partial class RegisterWin : Form
     {
+        string connectionString = @"Server = (localdb)\MSSQLLocalDB;Integrated Security = SSPI;Database = RegData;";
+
+        SqlConnection sqlConnection = null;
+        SqlDataReader reader = null;
+        SqlCommand cmd = new();
 
         public RegisterWin()
         {
+
             InitializeComponent();
         }
 
-        DataConnect dataConnect = new DataConnect();
-
-        //string connectionString = @"Server=(localdb)\MSSQLLocalDB;Database=RegTable;Integrated Security=SSPI;";
-
-
         private void SingUpButton_Click(object sender, EventArgs e)
         {
-
+            RegForm regForm = new RegForm();
+            regForm.Show();
         }
+
 
         private void SignInButton_Click(object sender, EventArgs e)
         {
-
-            try
+            using (sqlConnection = new SqlConnection(connectionString))
             {
-                dataConnect.openconnection();
-                SqlCommand cmd = new(@"SELECT * FROM RegTable");
-                SqlDataReader reader = cmd.ExecuteReader();
+                cmd = new(@"SELECT * FROM RegTable", sqlConnection);
+                sqlConnection.Open();
+                reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    if (LoginTextBox == reader["Login"] && PasswordTextBox == reader["Password"])
+                    if (LoginTextBox.Text == reader[4].ToString() && PasswordTextBox.Text == reader["Password"].ToString())
                     {
                         MessageBox.Show($"Welcome! {reader["Name"]} {reader["Surname"]}");
                     }
                 }
-            }
-            finally
-            {
-                dataConnect.closeconnection();
-            }
 
-            //using SqlConnection connection = new(connectionString);
-            //{
-            //    connection.Open();
-            //    SqlCommand cmd = new(@"SELECT * FROM RegTable", connection);
-            //    SqlDataReader reader = cmd.ExecuteReader();
-            //    while (reader.Read()) {
-            //        if (LoginTextBox == reader["Login"] && PasswordTextBox == reader["Password"]) {
-            //            MessageBox.Show($"Welcome! {reader["Name"]} {reader["Surname"]}");
-            //        }
-            //    }
-            //}
+            }
         }
     }
 }
