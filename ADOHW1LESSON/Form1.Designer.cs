@@ -1,4 +1,4 @@
-﻿namespace ADOHW1LESSON
+namespace ADOHW1LESSON
 {
     partial class RegisterWin
     {
@@ -59,22 +59,24 @@
             // 
             // SingUpButton
             // 
+            SingUpButton.BackColor = Color.SkyBlue;
             SingUpButton.Location = new Point(357, 311);
             SingUpButton.Name = "SingUpButton";
             SingUpButton.Size = new Size(112, 34);
             SingUpButton.TabIndex = 4;
             SingUpButton.Text = "Sign Up";
-            SingUpButton.UseVisualStyleBackColor = true;
+            SingUpButton.UseVisualStyleBackColor = false;
             SingUpButton.Click += SingUpButton_Click;
             // 
             // SignInButton
             // 
+            SignInButton.BackColor = Color.SkyBlue;
             SignInButton.Location = new Point(552, 311);
             SignInButton.Name = "SignInButton";
             SignInButton.Size = new Size(112, 34);
             SignInButton.TabIndex = 5;
             SignInButton.Text = "Sign In";
-            SignInButton.UseVisualStyleBackColor = true;
+            SignInButton.UseVisualStyleBackColor = false;
             SignInButton.Click += SignInButton_Click;
             // 
             // RegisterWin
